@@ -9,9 +9,132 @@
 <body>
     <h1>8-Protocolo IP.</h1>
     <p>
+        <i>Internet Protocol (RFC 791</i> <br>
+        Es un protocolo de la capa 3 (red) del modelo OSI. Entre sus funciones se encuentran:
+        <ul>
+            <li>
+                Dividir paquetes grandes en paquetes más pequeños.
+            </li>
+            <li>
+                Encontrar la ruta necesaria para enviar un paquete individual.
+            </li>
+            <li>
+                Determinar si un paquete recibido es correcto.
+            </li>
+        </ul>
+
+        <hr>
         En Internet, el protocolo IP corresponde con el nivel de red ISO/OSI. 
+        No tiene todas las características:
+        <ul>
+            <li>
+                IP no tiene control de la congestión.
+            </li>
+            <li>
+                No es orientado a conexión ni confiable.
+            </li>
+        </ul>
+        Existen dos versiones:
+        <ul>
+            <li>
+                IPv6: Reemplazará a IPv4 a medio plazo.
+            </li>
+            <li>
+                IPv4: La más usada actualmente, es la estudiada aquí.
+            </li>
+        </ul>
+        <img src="https://images.slideplayer.es/62/11806303/slides/slide_8.jpg" alt="">
+        <br>
+        Estrutura del protocolo.
+        <img src="https://image.slidesharecdn.com/19-modelotcp-ip-120906181102-phpapp01/95/modelo-tcpip-15-728.jpg?cb=1346955189" alt="">
     </p>
+    <h2>Longitud de la cabecera.</h2>
+    <p>
+        IP no tiene un tamaño de cabecera fijo.
+        Algunas opciones del protocolo añaden palabras de 32 bits. <br>
+        Por eso se necesita saber dónde empiezan los datos en cada paquete.
+    </p>
+    <h2>Código de redundancia.</h2>
+    <p>
+        El <i>checksum</i> se calcula como la suma (sin acarreo) de todas las palabras de 32 bits de
+        la cabecera. Excepto el propio <i>checksum</i>. <br>
+        Sirve para detectar errores de transmisión, es adicional al que pueda tener la capa de transporte.
+    </p>
+    <h2>Identificación del paquete y <i>fragment offset.</i> </h2>
+    <p>
+        Todos los paquetes IP tienen un identificador único: identification y fragment offset. <br>
+        Originalmente, un paquete se manda en un solo fragmento, con <i>fragment offset</i> a 0. <br>
+        Si se necesita dividor (MTU de nivel de enlace insuficiente). 
+        <ul>
+            <li>
+                Se parte en varios fragmentos.
+            </li>
+            <li>
+                cada uno de ellos indica el lugar de su primer byte de datos.
+            </li>
+        </ul>
+        Cada fragmento puede volverse a dividir. En el destino, se espera a que lleguen todos los 
+        fragmentos antes de enviarlo al protocolo de nivel superior.
+    </p>
+
+    <h2><i>Flags</i></h2>
+    <p>
+        El <b>primer</b> es para usos futuros. <br>
+        El <b>segundo </b> indica si este datagrama se puede fragmentar. <br>
+        El <b>tercero</b> dice si hay más fragmentos o es el último.
+    </p>
+
+    <h2>TTL (Time to life - Tiempo de vida)</h2>
+    <p>
+        El enrutador IP puede tener problemas. Es posible que haya bucles en las rutas que hagan que un paquete de
+        vueltas <i>por siempre.</i> <br>
+        Para evitarlo, el paquete se descarta pasado un tiempo en segundos (originalmente). Actualmente, el tiempo de 
+        vida se mide en saltos. <br>
+        Generalmente, los paquetes se envían con TTL suficiente para atravesar Internet (64 ó 255). <br>
         
+    </p>
+
+    <h2>Protocolo de nivel superior.</h2>
+    <p>
+        Indica qué protocolo está encapsulado en los datos.
+    </p>
+
+    <table>
+        <tr>
+            <td> <b>. Identificador </b> </td>
+            <td> <b>. Protocolo </b> </td>
+            <td> <b>.</b></td>    
+        </tr>
+        <tr>
+            <td>0x01</td>
+            <td>ICMP</td>
+            <td>Internet Control Message Protocol</td>
+        </tr>
+        <tr>
+            <td>0x02</td>
+            <td>IGMP</td>
+            <td>Internet Group Management Protocol</td>
+        </tr>
+        <tr>
+            <td>0x06</td>
+            <td>TCP</td>
+            <td>Tranmission Control Protocol</td>
+        </tr>
+        <tr>
+            <td>0x11</td>
+            <td>UDP</td>
+            <td>User Datagram Protocol</td>
+        </tr>
+        <tr>
+            <td>0x29</td>
+            <td>IPv6</td>
+            <td>IPv6 Encapsulation</td>
+        </tr>
+        
+        
+    </table>
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
     <address>
         Human Computing  3.0 &copy;
     </address>
