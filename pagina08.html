@@ -98,7 +98,6 @@
     <p>
         Indica qué protocolo está encapsulado en los datos.
     </p>
-
     <table>
         <tr>
             <td> <b>. Identificador </b> </td>
@@ -130,9 +129,202 @@
             <td>IPv6</td>
             <td>IPv6 Encapsulation</td>
         </tr>
-        
+        <tr>
+            <td>0x59</td>
+            <td>OSPF</td>
+            <td>Open Shortest Path First</td>
+        </tr>
+        <tr>
+            <td>0x73</td>
+            <td>L2TP</td>
+            <td>Layer Two Tunneling Protocol Version 3.</td>
+        </tr>
+        <tr>
+            <td>0x85</td>
+            <td>FC</td>
+            <td>Fibre Channel</td>
+        </tr>
         
     </table>
+
+    <h2>Dirección de origen y destino.</h2>
+    <p>
+        Son números de 32 bits. Indican la dirección de origen y destino de IP. <br>
+        Pueden no coincidir con la dirección de origen real. Por ejemplo:
+        <ul>
+            <li>En los saltos intermedios.
+                <p> 
+                    En esos casos, el origen y el destino en ese momento no son los indicados en la cabecera.
+                </p>
+            </li>
+        </ul>
+    </p>
+
+    <h2>Direcciones IP.</h2>
+    <p>
+        Una dirección IP consta de 32 bits. Por convenio, se representan como 4 números decimales, uno por cada byte.
+    </p>
+    <pre>
+        192.168.1.1
+        _______________________________
+
+        110000001010000000000100000001
+    </pre>
+
+    <h3>¿Qué identifican?</h3>
+    <p>
+        Las direcciones no se asignan por host. Se asignan a interfaces del host. 
+        <ul>
+            <li>
+                Un equipo con dos enlaces a la red tendrá dos direcciones IP.
+            </li>
+            <li>
+                Los enlaces a la red pueden ser a la misma red o a redes distintas.
+            </li>
+        </ul>
+        También un mismo interfaz puede tener más de una IP.
+        <img src="https://img.blogs.es/anexom/wp-content/uploads/2017/12/62097_8-1024x630.jpg" alt="">
+    </p>
+
+    <h2>Red y Host</h2>
+    <p>
+        Las direcciones IP se asignan al montar la red, no como las MAC. Las direcciones MAC se asignan 
+        por el fabricante de la tarjeta, quedando distribuidas casi aleatoriamente. <br>
+        Las dirección IP contiene dos partes:
+        <ul>
+            <li>Una parte identifica a la red.</li>
+            <li>Otra parte identifica al host/enlace dentro de la red.</li>
+        </ul>
+        <table>
+            <tr>
+                <td>192.168.1.1</td>
+                <td>Parte de red</td>
+                <td>Host</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>192.168.1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>192.168.</td>
+                <td>1.1</td>
+            </tr>
+        </table>
+    </p>
+
+    <h2>Clases de IP.</h2>
+    <p>
+        En las primeras versiones de IP había normas fijas para definir qué parte de la dirección era el host y 
+        qué parte red. <br>
+        Los primeros bits de la dirección definen la clase a la que pertenece.
+        <br>
+        <img src="https://joelviloria.files.wordpress.com/2015/01/sin-tc3adtulo.png" alt="">
+        <hr>
+        <h3>Parte de red y host</h3>
+        <p>
+            La clase define qué bits de la dirección son parte de la red y qué parte es del host.
+        </p>
+        <img src="https://3.bp.blogspot.com/-KSoQ_ZaU85I/TxitAwmUEeI/AAAAAAAAAAY/Lg9492LKQLc/s640/TIPOS+DE+IP.jpg" alt="">
+    </p>
+    <h3>
+        Dirección de red.
+    </h3>
+    <p>
+        La IP tiene una dirección propia. 
+        <ul>
+            <li>No puede ser utilizada por un host dentro de la red.</li>
+            <li>La dirección de la red tiene la parte del host a ceros.</li>
+        </ul>
+        <pre>
+            192.68.1.1  <b>Parte de red</b>     <b>Dirección de red</b>     <b>Host</b>
+            ____________________________________________________________________
+
+                        192.168.1           192.168.1.0        1
+        </pre>
+    </p>
+
+    <h3>Dirección del host</h3>
+    <p>
+        El host tiene una dirección propia dentro de la red. 
+        <ul>
+            <li>
+                Con ceros en la parte de la red.
+            </li>
+            <li>
+                No puede haber una red con todos los bits a cero
+            </li>
+        </ul>
+        <pre>
+            192.68.1.1  <b>Parte de red</b>     <b>Dirección de red</b>     <b>Host</b>     <b>Dirección de host</b>
+            _____________________________________________________________________________________
+
+                        192.168.1           192.168.1.0        1        0.0.0.1
+        </pre>
+    </p>
+
+    <h2>Resumen de direcciones de red y host</h2>
+    <table>
+        <tr>
+            <td>Bits de red</td>
+            <td>Bits de host</td>
+            <td>Significado</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>0</td>
+            <td>El propio host (desuso)</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>host</td>
+            <td>Host indicado dentro de mi red (desuso)</td>
+        </tr>
+        <tr>
+            <td>red</td>
+            <td>0</td>
+            <td>Dirección de la red</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>Difusión a mi red (desuso)</td>
+        </tr>
+        <tr>
+            <td>red</td>
+            <td>1</td>
+            <td>Difusión a la red indicada (<b>broadcast</b>)</td>
+        </tr>
+    </table>
+
+    <h3>¿Para qué sirve la red y el host?</h3>
+    <p>
+        Cuando un host va a enviar un paquete:
+    </p>
+    <ul>
+        <li>
+            Decide si el destino está en su misma red.
+        </li>
+        <li>
+            Si está en su misma red, se encarga la capa de enlace (ARP).
+        </li>
+        <li>
+            Si no está en su red, envía el paquete al router.
+        </li>
+        <li>
+            Y el router está en su misma red.
+        </li>
+    </ul>
+
+    <h2>Problemas de las clases IP.</h2>
+    <p>
+        En un principio, IP tenía suficientes direcciones y redes para todo el mundo. La 
+        creciente demanda de direcciones IP supuso problemas. <br>
+        Últimamente, desde 1985, las direcciones IP ya no se divicen en clases, utilizando  CIDR
+        ( <i>Classless Internet Domain Routing</i> ).
+    </p>
+
 
     <!-- --------------------------------------------------------------------------------------------------------------------------- -->
     <address>
