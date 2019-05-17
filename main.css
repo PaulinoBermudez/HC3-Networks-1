@@ -2618,7 +2618,9 @@ input, select, textarea {
 		}
 
 			.image.left img, .image.right img {
-				width: 100%;
+				/*width: 5ch;*/
+				max-width: 100%;
+				height: auto;
 			}
 
 		.image.left {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
     <title>8-Protocolo IP</title>
 </head>
 <body>
@@ -239,9 +240,9 @@
         </ul>
         <pre>
             192.68.1.1  <b>Parte de red</b>     <b>Dirección de red</b>     <b>Host</b>
-            ____________________________________________________________________
+            ________________________________________________________________________________
 
-                        192.168.1           192.168.1.0        1
+                            192.168.1           192.168.1.0                 1
         </pre>
     </p>
 
@@ -258,9 +259,9 @@
         </ul>
         <pre>
             192.68.1.1  <b>Parte de red</b>     <b>Dirección de red</b>     <b>Host</b>     <b>Dirección de host</b>
-            _____________________________________________________________________________________
+            _________________________________________________________________________________________________________
 
-                        192.168.1           192.168.1.0        1        0.0.0.1
+                          192.168.1                 192.168.1.0               1               0.0.0.1
         </pre>
     </p>
 
@@ -324,6 +325,129 @@
         Últimamente, desde 1985, las direcciones IP ya no se divicen en clases, utilizando  CIDR
         ( <i>Classless Internet Domain Routing</i> ).
     </p>
+
+    <h2>CIDR</h2>
+    <p>
+        <i>Classlesst Internet Domain Routing</i>. <br>
+        La dirección IP ya no da información acerca de los bits reservados para red y para host.
+        <br>
+        Las redes se identifican por la dirección de la red y el número de bits destinado a la misma. 
+        <br>
+        <ul>
+            <li>172.16.0.0/12</li>
+            <li>198.18.0.0/15</li>
+        </ul> 
+    </p>
+
+    <h2>Máscara de red.</h2>
+    <p>
+        Con CIDR la parte de la dirección red y host se calcula mediante las máscaras de red. <br>
+        La máscara de red es un número binario:
+        <ul>
+            <li>
+                Tantos 1's como el tamaño de la red CIDR.
+            </li>
+            <li>
+                Los 0's necesarios para completar hasta los 32 bits.
+            </li>
+        </ul>
+        Las máscaras de red también se expresan como 4 números decimales separador por puntos.
+    </p>
+    <h2>Dirección de red.</h2>
+    <p>
+        Con CIDR, la dirección de red sigue siendo la que tiene todos los bits del host a 0, y la de broadcast a 1.
+        Sin embargo, ya no es tan fácil como con clases. <br>
+        <i>Los bits de la red no son múltiplos de 8.</i> <br>
+        Se utiliza una máscara de red, realizando la operación 'AND'con la dirección IP para encontrar la dirección de red. 
+        <br> Ejemplo: <br>
+        La dirección IP es 192.168.20.100/26 <br>
+        La máscara de red son 26 &rarr; 1's  &rarr; 255.255.255.192 <br>
+        La dirección pertenece a la red. <br>
+        <pre>
+                255.255.255.192
+            AND 192.168.020.100
+            --------------------
+                192.168.020.064
+        </pre>
+        La red a la que pertenece es 192.168.20.64/26
+    </p>
+
+    <h2>Subnetting y supernetting</h2>
+    <p>
+        Utilizando máscaras de red pueden saltarse los límites de las clases IP.
+        <ul>
+            <li>
+                Una red grande puede dividirse en varias redes pequeñas (Subnetting).
+            </li>
+            <li>
+                Varias redes pequeñas pueden reunirse en una red más grande (Supernetting)
+.            </li>
+        </ul>
+    </p>
+
+    <h3>Subnetting</h3>
+    <p>
+        Consiste en crear subredes pequeñas dentro de una red de clase A,B o C. Ejemplo: <br>
+        Conseguir 4 redes a partir de una red de clase C. 
+        Hay que aumentar la máscara de red 2 bits ( 4 posibilidades).
+
+        <pre>
+             
+                            Redes           Primer host      Último host       Broadcast 
+        __________________________________________________________________________________
+        
+        Red original    192.168.20.0/24    192.168.20.1     192.168.20.254    192.168.20.255
+    
+        Primera subred  192.168.20.0/26    192.168.20.1     192.168.20.62     192.168.20.63
+        Segunda subred  192.168.20.64/26   192.168.20.65    192.168.20.126    192.168.20.127
+        Tercera subred  192.168.20.128/26  192.168.20.129   192.168.20.190    192.168.20.191
+        Cuarta subred   192.168.20.192/26  192.168.20.193   192.168.20.254    192.168.20.255
+        
+        </pre>
+    </p>
+
+    <h3>Supernetting.</h3>
+    <p>
+        A partir de varias redes pequeñas (generalmente clase C), conseguir una más grande. <br>
+        Ejemplo: <br>
+        Conseguir una red con más de 1000 hosts a partir de redes clase C. <br>
+        Tenemos las 32 redes 192.168.0.0 a la 192.168.31.0 <br>
+        Reducimos la máscara en 5 bits &rarr; 192.168.0.0/19 
+        <pre>
+            Red             Primer host      Último host       Broadcast            Máscara
+            ____________________________________________________________________________________
+            192.168.0.0/19  192.168.0.1     192.168.31.254      192.168.31.255  255.255.255.224
+        </pre>
+    </p>
+
+    <h2>¿Qué es una red privada?</h2>
+    <p>
+        Una red privada (RFC 1918) son direcciones inválidas en internet. <br>
+        Un router de internet descarta todos los paquetes con origen o destino en redes privadas. <br>
+        Sirven para crear redes con IP que no forman parte de Internet. Internas a organizaciones: 
+        Empresas, universidades, institutos,...  <br>
+        <b>Objetivos: <br></b>
+        <ul>
+            <li>
+                No es posible ocultar direcciones de Internet: Ningún ordenador interno tendrá la dirección: 8.8.8.8 
+            </li>
+            <li>
+                Ahorro de direcciones IP.
+            </li>
+            <li>
+                Siguen teniendo acceso <i>limitado</i> a Internet: <b>NAT</b>.
+            </li>
+        </ul>
+    </p>
+    <h2>CIDR: Redes reservadas.</h2>
+    <p>
+        En el estándar CIDR se reserva la primera y última red de cada partición. Por ejemplo, al dividir la red 
+        de clase C, 192.168.20.0/24 en 4 redes (pasando a máscara /26). <br>
+        Las redes 192.168.20.0/26 y 192.168.20.192/26 quedan reservadas. <br>
+        La mayoría de routers e implementaciones de IP pueden trabajar con ellas, pero es mejor no usarlas para 
+        no tener problemas con equipos antiguos.
+    </p>
+
 
 
     <!-- --------------------------------------------------------------------------------------------------------------------------- -->
