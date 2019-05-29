@@ -2600,10 +2600,17 @@ input, select, textarea {
 	}
 
 /* Image */
-
+	img {
+		border: 0;
+		border-radius: 2px;
+		display: block;
+		position: relative;
+		width: 100%;
+		max-width: 30rem;
+	}
 	.image {
 		border: 0;
-		border-radius: 4px;
+		border-radius: 2px;
 		display: inline-block;
 		position: relative;
 	}
