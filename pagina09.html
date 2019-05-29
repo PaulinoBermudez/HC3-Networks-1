@@ -11,5 +11,84 @@
     <h1>
         9-Enrutamiento IP.
     </h1>
+    <p>
+        <h2>Introducción.</h2>
+        <p>
+            IP se encarga de llevar cada paquete hasta su red. Una vez llegado a la red.
+            IP suopone que:
+            <ul>
+                <li>
+                    La red de difusión (bus), con la cual llega a su destino.
+                </li>
+                <li>
+                    La entrada a la red es un router que conoce las subredes dentro de la red,
+                    con lo que se sigue enrutando el paquete.
+                </li>
+            </ul>
+        </p>
+        
+        <h2>
+            Pathping en Windows.
+        </h2>
+            <img src="https://filebrowser.clouddirect.net/Uploads/images/knowledge%20base/Broadband/pathping.png" alt="pathping windows">
+        
+        <hr>
+        
+        <h2>
+            Mtr en Linux.
+        </h2>
+            <img src="https://www.tecmint.com/wp-content/uploads/2018/06/specify-order-of-output-fields.png" alt="mtr linux">
+        
+        <h2>
+            Cómo enruta IP.
+        </h2>
+        <p>
+            Hace falta los siguientes datos para enrutar un paquete IP:
+            <ul>
+                <li>
+                    La dirección de destino del paquete.
+                </li>
+                <li>
+                    La red a la que pertenece la dirección de destino.
+                </li>
+                <li>
+                    La interfaz de red donde se alcanza la red de destino.
+                </li>
+                <li>
+                    La dirección del router que nos ayuda a alcanzar el destino.
+                </li>
+            </ul>
+        </p>
+
+        <h2>
+            IP vs MAC.
+        </h2>
+        <p>
+            Un host con IP recibe y procesa paquetes tanto con su propia dirección IP como la de otros:
+            <ul>
+                <li>
+                    Ethernet ( o el protocolo usado en la capa de <i>enlace</i> ) pasa a IP todos los paquetes que 
+                    llegan con su dirección MAC.
+                </li>
+                <li>
+                    IP pasa hacia arriba los apquetes con la dirección IP propia.
+                </li>
+                <li>
+                    IP enruta (envia) los paquetes no dirigidos a su propia dirección IP.
+                </li>
+            </ul>
+            Por tanto, para que funcione IP tiene que ser posible enviar paquetes IP a otros host aunque no sea el indicado en la 
+            dirección IP destino.
+            <ul>
+                <li>
+                    Se hace usando las direcciones MAC o físicas del otro host.
+                </li>
+                <li>
+                    La unión entre direcciones MAC y físicas es el protocolo ARP.
+                </li>
+            </ul>
+        </p>
+
+    </p>
 </body>
 </html>
