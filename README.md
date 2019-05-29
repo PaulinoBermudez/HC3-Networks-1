@@ -2,10 +2,6 @@
 Creación de los apuntes de Planificación y Administración de Redes de primero de ASIR.
 Creación de estructura teórica-práctica de PAR. <br>
 
-<<<<<<< HEAD
-Por @Puachino09 & @Chunche. 
+Por @Pauchino09 & @Chunche. 
 <h3>Administration Services in line.</h3>
-
-=======
-Por @Pauchino09 & @Chunche.
->>>>>>> 37b32cc990153ff618e56fcbc271a055c8968209
+<img src="https://cdn.pixabay.com/photo/2016/01/31/23/31/computer-searches-1172404__340.jpg">
