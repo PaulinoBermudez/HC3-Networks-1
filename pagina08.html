@@ -8,7 +8,7 @@
     <title>8-Protocolo IP</title>
 </head>
 <body>
-    <h1>Protocolo IP.</h1>
+    <h1>8-Protocolo IP.</h1>
     <p>
         <i>Internet Protocol (RFC 791</i> <br>
         Es un protocolo de la capa 3 (red) del modelo OSI. Entre sus funciones se encuentran:
@@ -49,18 +49,21 @@
         Estrutura del protocolo.
         <img src="https://image.slidesharecdn.com/19-modelotcp-ip-120906181102-phpapp01/95/modelo-tcpip-15-728.jpg?cb=1346955189" alt="">
     </p>
+
     <h2>Longitud de la cabecera.</h2>
     <p>
         IP no tiene un tamaño de cabecera fijo.
         Algunas opciones del protocolo añaden palabras de 32 bits. <br>
         Por eso se necesita saber dónde empiezan los datos en cada paquete.
     </p>
+
     <h2>Código de redundancia.</h2>
     <p>
         El <i>checksum</i> se calcula como la suma (sin acarreo) de todas las palabras de 32 bits de
         la cabecera. Excepto el propio <i>checksum</i>. <br>
         Sirve para detectar errores de transmisión, es adicional al que pueda tener la capa de transporte.
     </p>
+    
     <h2>Identificación del paquete y <i>fragment offset.</i> </h2>
     <p>
         Todos los paquetes IP tienen un identificador único: identification y fragment offset. <br>
