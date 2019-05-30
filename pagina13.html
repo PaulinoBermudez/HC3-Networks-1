@@ -76,7 +76,7 @@
                 El emisor no tiene la seguridad de que los datagramas llegan al receptor. Por tanto, no tiene conexiones
                 i es confiable. Cada datagrama se envía de forma independiente.
             </p>
-
+            <img src="https://4.bp.blogspot.com/-C_M2gq9kFYw/UY1lgoo5UHI/AAAAAAAAADQ/7otlv_voje0/s1600/Protocol.png" alt="">
         </p>
 
         <h2>
@@ -86,6 +86,72 @@
             Transmission Control Protocol. Asegura que la transmisión se realiza por un medio fiable.
             Garantiza la recepción de los mensajes en orden correcto. Garantiza al emisor que los mensajes 
             llegan correctamente al receptor. Por tanto, es orientado a conexión y confiable.
+            <br>
+            <img src="https://www.monografias.com/trabajos82/configuracion-y-servicios-tcp-ip/image001.png" alt="Tamaño de datagramas">
+            <br>
+
+            <h3>
+                Ventana y correción de errores.
+            </h3>
+            <p>
+                TCP necesita confirmación de cada mensaje enviado, para garantizar la confiabilidad. <br>
+                Opciones:
+                <ul>
+                    <li>
+                        <b>Parada y espera:</b> Cada mensaje necesita confirmación.
+                    </li>
+                    <li>
+                        <b>Piggybacking:</b> La configuración puede retrasarse algunos mensajes (ventana).
+                    </li>
+                </ul>
+                la parada y espera es más simple, pero desaprovecha ancho de banda.
+                Ejemplo de parada y espera: 
+                <img src="https://slideplayer.es/slide/2822221/10/images/56/Protocolo+de+Parada+y+Espera%3A+gr%C3%A1fico+de+tiempo.jpg" alt="Parada y espera">
+                Ejemplo de piggybacking con ventana.
+                <img src="https://www.computer-networking.info/1st/html/_images/transport-fig-043-c.png" alt="Piggybacking">
+
+            </p>
+        </p>
+
+        <h2>
+            Sequence number y Acknowledgment number.
+        </h2>
+        <p>
+            <b>TCP</b> intenta que la comunicación se asemeje a un flujo de bytes.
+            <br>
+            <code>
+                Todos los bytes que entran por un extemo ... deben salir por el otro lado.
+            </code>
+            <br>
+            En <b>cada paquete</b> se envía:
+            <ul>
+                <li>
+                    El número de secuencia del primer byte transmitido en el paquete.
+                </li>
+                <li>
+                    El número de secuencia del siguiente byte que se espera.
+                </li>
+            </ul>
+        </p>
+
+        <h3>
+            Estado de la conexión.
+        </h3>
+        <p>
+            Cada extremo de la comunicación debe saber:
+            <ul>
+                <li>
+                    Cuál es su siguiente bytr a enviar (sequence number).
+                </li>
+                <li>
+                    Cuál es su siguiente byte a recibir (acknowledgment number).
+                </li>
+            </ul>
+            Además, también lleva la cuenta de su opinión acerca del <i>sequence number</i>y del 
+            <i>acknowledgment number</i>del otro extremo.
+            <img src="https://i0.wp.com/madpackets.com/wp-content/uploads/2018/04/tcp-seq-ack-flow-e1524681839913.png?resize=538%2C756&ssl=1" alt="">
+            <br>
+            <img src="https://i.imgur.com/a3dWHUc.png" alt="">
         </p>
     </p>
 
