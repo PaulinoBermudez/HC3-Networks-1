@@ -153,6 +153,69 @@
             <br>
             <img src="https://i.imgur.com/a3dWHUc.png" alt="">
         </p>
+
+        <h2>Corrección de errores.</h2>
+        <p>
+            Si se recibe un <i>sequence number</i> posterior a nuestro <i>acknowledgment number</i> <br>
+            Es un paquete <b>posterior</b> al que esperamos.
+            <ul>
+                <li>
+                    Se puede guardar en la capa TCP hasta que lleguen los anteriores.
+                </li>
+                <li>
+                    O se puede ignorar, y reclamar los paquetes perdidos enviando un <i>acknowledgment number</i> menor que el que esperaba el otro.
+                </li>
+            </ul>
+            El otro lado reenviará los paquetes necesarios.
+            <br>
+            <img src="https://www.dcs.bbk.ac.uk/~ptw/teaching/IWT/transport-layer/lost-acknowledgement.gif" alt="seq number y ack">
+            Si se recibe un sequence number anterior a nuestro acknowledgment number.
+            <ul>
+                <li>
+                    Es un paquete ya recibido (se habrá duplicado). Por tanto, se ignorá.
+                </li>
+            </ul>
+            Si llega un acknowledgment number menor que los bytes enviados.
+            <ul>
+                <li>
+                    Reenviaré a partir de dicho acknowledgment number.
+                </li>
+            </ul>
+            <img src="https://www.dcs.bbk.ac.uk/~ptw/teaching/IWT/transport-layer/retransmission.gif" alt="seq number lose">
+            <br>
+            Si no tengo confirmación de un paquete enviado tras un <i>timeout</i>. <br>
+            <ul>
+                <li>
+                    Reenviaré el paquete
+                </li>
+            </ul>
+        </p>
+
+        <h2>
+            Mensajes TCP.
+        </h2>
+        <p>
+
+            <h3>
+                Establecimiento de conexión.
+            </h3>
+            <ul>
+                <li>
+                    Un servidor escucha en un puerto.
+                </li>
+                <li>
+                    Un cliente envía una solicitud de conexión.
+                </li>
+                <li>
+                    El servidor responde con una aceptación de la conexión.
+                </li>
+                <li>
+                    El cliente acepta la aceptación.
+                </li>
+            </ul>
+
+        </p>
+
     </p>
 
     <address>
