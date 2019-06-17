@@ -126,7 +126,65 @@
             ordenadores. <br>
             Un equipo tiene una conexión a Internet (por ejemplo, LAN) y la comparte mediante una conexión
             (por ejemplo, Wifi). <br>
-            Habilita el enrutamiento, 
+            Habilita el enrutamiento, y en la conexión de Wifi instala:
+            <ul>
+                <li>Un servidor DHCP</li>
+                <li>Un servidor NAT</li>
+                <li>Un servidor DNS</li>
+
+                <cite>
+                <b>DHCP</b>: Sirve para la configuracion dinaámica del host - Asigna IP de forma automática. <br>
+                <b>NAT</b>: Traducción de Direcciones de Red. Hace 'invisible' un host. <br>
+                <b>DNS</b>: Sistema de Nombres de Dominio, traducción de dirección real en una IP.
+                </cite>
+            </ul>
+        </p>
+    
+        <h2>
+            DMZ
+        </h2>
+        <p>
+            La <i>zona desmilitarizada</i>la componen los hosts que una empresa expone a Internet. Puede configurarse 
+            de varias maneras.
+
+            <h3>DMZ Expuesta</h3>
+            <p>
+               Se caracteriza por tener a un(os) host(s) fuera del firewall que tiene el router. <br>
+               Son facilmente accesibles desde Internet. <br>
+               <b>Características:</b> <br>
+               (Problemas) <br>
+               - Velocidad de acceso de la LAN a la DMZ <br>
+               - Seguridad de la DMZ <br>
+               (Ventajas) <br>
+               + Fácil <br>
+               + Barato <br>
+            </p>
+            
+            <h3>DMZ Host</h3>
+            <p>
+                Para acceder a los hosts 'públicos' debe pasarse primero por un firewall, que lo comparten con los otros hosts 
+                NO públicos. <br>
+                <b>Características:</b> <br>
+                (Problemas) <br>
+                - Más dificil (abrimos puertos).
+                - Inseguro, tráfico externo por la LAN. <br>
+                (Ventajas) <br>
+                + Más seguro para los servidores. <br>
+                + Accesos de la LAN a la DMZ (y viceversa) más rápido. 
+            </p>
+
+            <h3>DMZ con doble firewall.</h3>
+            <p>
+                Se configuran dos firewall de acceso desde el router. Uno es para dar acceso a la DMZ y tiene un segundo 
+                filtro para tener acceso a la LAN. <br>
+                <b>Características:</b> <br>
+                (Problemas) <br>
+                - Más difícil <br>
+                - Más caro <br>
+                (Ventajas) <br>
+                + Máxima seguridad. <br>
+            </p>
+
         </p>
 
 
